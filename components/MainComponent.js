@@ -12,6 +12,7 @@ import Home from "./HomeComponent";
 import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import Dishdetail from "./DishdetailComponent";
+import Reservation from "./ReservationComponent";
 import {
   createStackNavigator,
   createDrawerNavigator,
@@ -144,6 +145,31 @@ const ContactNavigator = createStackNavigator(
   }
 );
 
+const ReservationNavigator = createStackNavigator(
+  {
+    Reservation: { screen: Reservation }
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#521DA8"
+      },
+      headerTitleStyle: {
+        color: "#fff"
+      },
+      headerTintColor: "#fff",
+      headerLeft: (
+        <Icon
+          name="menu"
+          size={24}
+          color="white"
+          onPress={() => navigation.toggleDrawer()}
+        />
+      )
+    })
+  }
+);
+
 const CustomDrawerContentComponent = props => (
   <ScrollView>
     <SafeAreaView
@@ -213,6 +239,21 @@ const MainNavigator = createDrawerNavigator(
             name="address-card"
             type="font-awesome"
             size={22}
+            color={tintColor}
+          />
+        )
+      }
+    },
+    Reservation: {
+      screen: ReservationNavigator,
+      navigationOptions: {
+        title: "Reserve Table",
+        drawerLabel: "Reserve Table",
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name="cutlery"
+            type="font-awesome"
+            size={24}
             color={tintColor}
           />
         )
